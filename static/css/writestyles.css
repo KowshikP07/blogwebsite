@@ -116,7 +116,7 @@ a {
     top:125px;
     height: 80vh;
 	width: 100vw;
-	background: RGB(229, 220, 207);
+    border: 1px solid black;
 	overflow: hidden;
 }
 .toolbar {
@@ -204,4 +204,61 @@ a {
 #content img {
     max-width: 100%;
     height: auto;
+}
+.footer{
+    position: relative;
+    top:9rem;
+    background-color: RGB(229, 220, 207);
+    height: 250px;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:gray;
+    font-size:0.8em;
+    flex-direction: column;
+}
+.footer .row{
+    height:100px;
+    width:250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer .row a{
+    text-decoration: none;
+    color:black;
+    font-size: 30px;
+}
+.footer .col{
+    height:120px;
+    width:800px;
+}
+.footer .col ul{
+    height:100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.footer .col ul li{
+    list-style: none;
+}
+.footer .col ul li a{
+    text-transform: uppercase;
+    font-size: 1rem;
+    text-decoration: none;
+    color:black
+}
+.footer .row1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100px;
+    width:1000px;
+}
+.footer .row1 h1{
+    color: black;
+    font-weight: 300;
 }
