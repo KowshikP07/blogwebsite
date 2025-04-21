@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="../static/css/signup.css">
+</head>
+
+<body>
+    <div class="cointainer-1">
+        <div class="form">
+            <h1>Login</h1>
+            <form action="" class="form-input">
+                <input type="text" id="username" name="username" placeholder="Username">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <br>
+                <p><a href="" id="signup">Create an account ?</a></p>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+    <div class="cointainer-2">
+        <div class="form">
+            <h1>Sign Up</h1>
+            <form
+                action="https://script.google.com/macros/s/AKfycbwtJ-3oI6MZhsbxhKs5lc-OdJuweg-VdB1EkGkcNzEwsFwBrW0v-hYO3RHb36clZ34d5A/exec"
+                class="form-input" method="POST">
+                <input type="text" id="Name" name="Name" placeholder="Name">
+                <input type="text" id="Username" name="Username" placeholder="Username">
+                <input type="email" id="Email" name="Email" placeholder="Email">
+                <input type="tel" id="Mobile_Number" name="Mobile_Number" placeholder="Mobile Number">
+                <input type="password" id="Password" name="Password" placeholder="Password">
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+                <br>
+                <p><a href="" id="login">Already have an account ?</a></p>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const signupContainer = document.querySelector(".cointainer-1");
+            const loginContainer = document.querySelector(".cointainer-2");
+            const loginLink = document.getElementById("login");
+            const signupLink = document.getElementById("signup");
+
+            loginContainer.classList.add("active");
+
+            loginLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                signupContainer.classList.remove("active");
+                loginContainer.classList.add("active");
+            });
+
+            signupLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                loginContainer.classList.remove("active");
+                signupContainer.classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>
