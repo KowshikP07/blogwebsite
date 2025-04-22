@@ -1,0 +1,149 @@
+header{
+    position: fixed;
+    height:90px;
+    width:100%;
+    background-color: white;
+    box-shadow: 0px 4px 6px black;
+    z-index: 100;
+}
+.header{
+    position: fixed;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 97%;
+    background-color: RGB(229, 220, 207);
+    border: 2px solid black;
+    border-radius: 50px;
+}
+.header nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+.logo{
+    height: 90%;
+    width: 150px;
+    margin-left: 2%;
+}
+.logo img{
+    height:100%;
+    width:100%;
+}
+.line{
+    height: 2px;
+    width: 100px;
+    background-color: black;
+}
+.nav-links{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+.nav-links li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    height: 100%;
+    width: 100%;
+}
+.nav-links li a{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    font-weight: 1000;
+}
+.user{
+    height: 90%;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user .login{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login a,.one a{
+    text-decoration: none;
+    color:black;
+}
+.user .signup{
+    height: 70%;
+    width: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: RGB(247, 248, 161);
+    border-radius: 25px;
+    border: 2px solid black;
+    margin-right: 2%;
+}
+.one{
+    font-size: 20px;
+    font-weight: 1000;
+    color: black;
+}
+#blog{
+    position: relative;
+    top:130px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    min-height: 100vh;
+    width:100vw;
+}
+.show-blog{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 100vh;
+    width:90%;
+    flex-wrap: wrap;
+}
+.show-blog .blogs{
+    position: relative;
+    margin-bottom: 5%;
+    height:450px;
+    flex-basis: 25%;
+    background-color: aliceblue;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.blog-dis{
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateY(100%);
+    clip-path: polygon(0 0,100% 0,100% 50%,0% 75%);
+    transition: transform 0.4s ease;
+  
+}
+.blogs:hover .blog-dis{
+    transform: translateY(0px);
+}
+.main-dis{
+    position: absolute;
+    height:85%;
+    width:85%;
+    background-color: antiquewhite;
+}
