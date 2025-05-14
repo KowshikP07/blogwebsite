@@ -5,38 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-    <link rel="stylesheet" href="../static/css/signup.css">
+    <link href="{{ url_for('static', filename='css/signup.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div class="cointainer-1">
         <div class="form">
             <h1>Login</h1>
-            <form action="" class="form-input">
-                <input type="text" id="username" name="username" placeholder="Username">
-                <input type="password" id="password" name="password" placeholder="Password">
+            <form action="{{ url_for('login') }}" method="POST" class="form-input">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
                 <br>
-                <p><a href="" id="signup">Create an account ?</a></p>
+                <p><a href="{{ url_for('signup') }}" id="signup">Create an account?</a></p>
                 <input type="submit" value="Login">
             </form>
+            
+            <!-- Flash messages for success or error -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul>
+                        {% for category, message in messages %}
+                            <li class="flash-{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
         </div>
     </div>
     <div class="cointainer-2">
         <div class="form">
             <h1>Sign Up</h1>
-            <form
-                action="https://script.google.com/macros/s/AKfycbwtJ-3oI6MZhsbxhKs5lc-OdJuweg-VdB1EkGkcNzEwsFwBrW0v-hYO3RHb36clZ34d5A/exec"
-                class="form-input" method="POST">
-                <input type="text" id="Name" name="Name" placeholder="Name">
-                <input type="text" id="Username" name="Username" placeholder="Username">
-                <input type="email" id="Email" name="Email" placeholder="Email">
-                <input type="tel" id="Mobile_Number" name="Mobile_Number" placeholder="Mobile Number">
-                <input type="password" id="Password" name="Password" placeholder="Password">
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+            <form action="{{ url_for('signup') }}" method="POST" class="form-input">
+                <input type="text" id="Name" name="Name" placeholder="Name" required>
+                <input type="text" id="Username" name="Username" placeholder="Username" required>
+                <input type="email" id="Email" name="Email" placeholder="Email" required>
+                <input type="tel" id="Mobile_Number" name="Mobile_Number" placeholder="Mobile Number" required>
+                <input type="password" id="Password" name="Password" placeholder="Password" required>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
                 <br>
-                <p><a href="" id="login">Already have an account ?</a></p>
+                <p><a href="{{ url_for('login') }}" id="login">Already have an account?</a></p>
                 <input type="submit" value="Register">
             </form>
+            
+            <!-- Flash messages for success or error -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul>
+                        {% for category, message in messages %}
+                            <li class="flash-{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
         </div>
     </div>
     <script>

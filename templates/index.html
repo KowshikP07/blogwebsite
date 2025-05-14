@@ -5,74 +5,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlogSphere</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Flash messages for success or error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="flash-{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
     <header>
         <div class="header">
             <nav>
-                <div class="logo"><img src="../static/assets/logo1.png" alt="logo"></div>
+                <div class="logo"><img src="{{ url_for('static', filename='assets/logo1.png') }}" alt="logo"></div>
                 <span class="line"></span>
                 <ul class="nav-links">
-                    <li><a href="#features">Home</a></li>
-                    <li><a href="#features">About us</a></li>
-                    <li><a href=".categories">Categories</a></li>
-                    <li><a href="#testimonials">Blog</a></li>
-                    <li><a href="#pricing">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About us</a></li>
+                    <li><a href="{{ url_for('index') }}#categories">Categories</a></li>
+                    <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                    <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
                 <span class="line"></span>
-                <div class="user one"><div class="login"><a href="login.html">Log in</a></div>
-                <div class="signup one"><a href="signup.html">Sign up</a></div></div>
+                <div class="user one">
+                    {% if session.get('user_id') %}
+                        <span class="username">{{ session['name'] }}</span>
+                        <div class="signup one"><a href="{{ url_for('profile') }}">Profile</a></div>
+                    {% else %}
+                        <div class="login"><a href="{{ url_for('login') }}">Log in</a></div>
+                        <div class="signup"><a href="{{ url_for('signup') }}">Sign up</a></div>
+                    {% endif %}
+                </div>
             </nav>
         </div>
     </header>
+
     <section class="content">
         <div class="main-cont">
-            <div class="container"><div class="icon"><h1>5+ categories</h1><i class="bx bx-right-arrow-alt"></i></div><div class="top"><div class="blog-cont"></div>
-            <div class="blog-cont"></div>
-            <div class="blog-cont"></div>
-            <div class="blog-cont"><h4>water sports</h4></div></div></div>
-            <div class="container"><div class="ratings"><div class="rates"><i class="bx bx-trending-up"></i></div><div class="rev"><h1>4.5 review</h1></div></div><div class="team"><div class="team-icon"><i class="bx bx-code-alt"></i><i class="bx bxs-train"></i><i class="bx bx-message-dots"></i><i class="bx bxs-bowl-hot"></i></div><div class="team-content"><h1>Create, Share, Inspire, Engage, Grow, Express.</h1></div></div></div>
-            <div class="container"><div class="ai"><h1>Smart AI Blog Generator</h1><i class="bx bx-edit-alt"></i></div><div class="image-ai"><img src="../static/assets/image1-removebg-preview.png" alt="ai"></div><div class="secret"><h1>AI-Powered Blog Assistant</h1></div></div>
-            <div class="container"><div class="profile"><img  src="../static/assets/himalayas.jpg" alt="spider"></div><div class="infomation"><p>Write about your favourite Destinations & Expreience</p></div></div>
+            <div class="container">
+                <div class="icon">
+                    <h1>5+ categories</h1>
+                    <i class="bx bx-right-arrow-alt"></i>
+                </div>
+                <div class="top">
+                    <div class="blog-cont"></div>
+                    <div class="blog-cont"></div>
+                    <div class="blog-cont"></div>
+                    <div class="blog-cont"><h4>water sports</h4></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="ratings">
+                    <div class="rates"><i class="bx bx-trending-up"></i></div>
+                    <div class="rev"><h1>4.5 review</h1></div>
+                </div>
+                <div class="team">
+                    <div class="team-icon">
+                        <i class="bx bx-code-alt"></i>
+                        <i class="bx bxs-train"></i>
+                        <i class="bx bx-message-dots"></i>
+                        <i class="bx bxs-bowl-hot"></i>
+                    </div>
+                    <div class="team-content">
+                        <h1>Create, Share, Inspire, Engage, Grow, Express.</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="ai"><h1>Share Your Adventure Story</h1><i class="bx bx-edit-alt"></i></div>
+                <div class="image-ai"><img src="{{ url_for('static', filename='assets/image1-removebg-preview.png') }}" alt="logo"></div>
+                <div class="secret"><h1>Read, Write and Enjoy</h1></div>
+            </div>
+            <div class="container">
+                <div class="profile"><img src="{{ url_for('static', filename='assets/himalayas.jpg') }}" alt="logo"></div>
+                <div class="infomation"><p>Write about your favourite Destinations & Experience</p></div>
+            </div>
         </div>
         <div class="desc">
             <div class="first-cont"><p>interactive online blog platform</p></div>
             <div class="sec-cont"><p>BlogSphere is an innovative and interactive online blog platform designed for writers, storytellers, and readers. Whether you're an aspiring blogger or a seasoned writer, BlogSphere offers a seamless space to share ideas, express creativity, and engage with a dynamic community.</p></div>
-            <div class="third-cont"><div class="get"><h3>get started</h3></div><div class="write"><h3>write blogs</h3></div></div>
-            <div class="fourth-cont"><div class="box1"><div class="box1-line"></div><div class="box1-cont"><p>Discover the latest trending blogs from our creators!</p></div></div><div class="box2"><div class="box2-line"></div><div class="box2-cont"><p>Meet our top bloggers and explore their best content!</p></div></div></div>
+            <div class="third-cont">
+                <div class="get"><h3>get started</h3></div>
+                <a href="{{ url_for('blogform') }}"><div class="write"><h3>write blogs</h3></div></a>
+            </div>
+            <div class="fourth-cont">
+                <div class="box1">
+                    <div class="box1-line"></div>
+                    <div class="box1-cont"><p>Discover the latest trending blogs from our creators!</p></div>
+                </div>
+                <div class="box2">
+                    <div class="box2-line"></div>
+                    <div class="box2-cont"><p>Meet our top bloggers and explore their best content!</p></div>
+                </div>
+            </div>
         </div>
     </section>
-    <section class="categories">
+
+    <section class="categories" id="categories">
         <div class="cat-title"><h1>destinations</h1></div>
-        <div class="cat-adv"><div class="cat-images"><div class="cat-head"><h3 class="cat-text">Mountain Climbing</h3></div><div class="cat-desc"><img src="../static/assets/mountain.jpg" alt="mountain"></div></div>
-        <div class="cat-images"><div class="cat-head"><h3 class="cat-text">Water Sports</h3></div><div class="cat-desc"><img src="../static/assets/water.jpg" alt="water"></div></div>
-        <div class="cat-images"><div class="cat-head"><h3 class="cat-text">Wildlife Adventures</h3></div><div class="cat-desc"><img src="../static/assets/adv.jpg" alt="wildlife"></div></div>
-        <div class="cat-images"><div class="cat-head"><h3 class="cat-text">Off-road</h3></div><div class="cat-desc"><img src="../static/assets/offroad.jpg" alt="off"></div></div></div>
+        <div class="cat-adv">
+            <div class="cat-images">
+                <a href="{{ url_for('blog') }}" class="cate">
+                    <div class="cat-head"><h3 class="cat-text">Mountain Climbing</h3></div>
+                </a>
+                <div class="cat-desc">
+                    <img src="{{ url_for('static', filename='assets/Mountain.jpg') }}" alt="logo">
+                </div>
+            </div>
+            <div class="cat-images">
+                <a href="{{ url_for('blog') }}" class="cate">
+                    <div class="cat-head"><h3 class="cat-text">Water Sports</h3></div>
+                </a>
+                <div class="cat-desc">
+                    <img src="{{ url_for('static', filename='assets/water.jpg') }}" alt="logo">
+                </div>
+            </div>
+            <div class="cat-images">
+                <a href="{{ url_for('blog') }}" class="cate">
+                    <div class="cat-head"><h3 class="cat-text">Wildlife Adventures</h3></div>
+                </a>
+                <div class="cat-desc">
+                    <img src="{{ url_for('static', filename='assets/adv.jpg') }}" alt="logo">
+                </div>
+            </div>
+            <div class="cat-images">
+                <a href="{{ url_for('blog') }}" class="cate">
+                    <div class="cat-head"><h3 class="cat-text">Off-road</h3></div>
+                </a>
+                <div class="cat-desc">
+                    <img src="{{ url_for('static', filename='assets/offroad.jpg') }}" alt="logo">
+                </div>
+            </div>
+        </div>
     </section>
+
     <section id="footer">
-            <div class="footer">
-                <div class="row">
+        <div class="footer">
+            <div class="row">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-instagram"></i></a>
                 <a href="#"><i class="fa fa-youtube"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
-                </div>
-                <div class="col">
+            </div>
+            <div class="col">
                 <ul>
-                <li><a href="#">Contact us</a></li>
-                <li><a href="#">Our Services</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms and Conditions</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms and Conditions</a></li>
                 </ul>
-                </div>
-                <div class="row1"><h1>BlogSphere Copyright © 2025 BlogSphere - All rights reserved || Designed By: Gowtham C D|Jayasurya S|Kowshik P</h1>
-                </div>
-                </div>
-            </section>
+            </div>
+            <div class="row1">
+                <h1>BlogSphere Copyright © 2025 BlogSphere - All rights reserved || Designed By: Gowtham C D|Jayasurya S|Kowshik P</h1>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

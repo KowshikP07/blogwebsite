@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - {{ blog['title'] }}</title>
+    <link href="{{ url_for('static', filename='css/blog1.css') }}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <nav>
+                <div class="logo"><img src="{{ url_for('static', filename='assets/logo1.png') }}" alt="logo"></div>
+                <span class="line"></span>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About us</a></li>
+                    <li><a href="{{ url_for('index') }}#categories">Categories</a></li>
+                    <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                    <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                </ul>
+                <span class="line"></span>
+                <div class="user one">
+                    {% if session.get('user_id') %}
+                        <span class="username">{{ session['name'] }}</span>
+                        <div class="logout"><a href="{{ url_for('logout') }}">Log out</a></div>
+                    {% else %}
+                        <div class="login"><a href="{{ url_for('login') }}">Log in</a></div>
+                        <div class="signup"><a href="{{ url_for('signup') }}">Sign up</a></div>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="blog-details">
+        <div class="blog-container">
+            <h1>{{ blog['title'] }}</h1>
+            
+            <div class="blog-meta">
+                <span class="author">{{ blog['author'] if 'author' in blog else 'Admin' }}</span>
+                <span class="date">{{ blog['date'] if 'date' in blog else 'Posted on May 6, 2025' }}</span>
+            </div>
+            
+            {% if blog['image'] %}
+                <img src="{{ url_for('static', filename='uploads/' + blog['image']) }}" alt="Blog Image">
+            {% endif %}
+            
+            <div class="blog-content">
+                <p>{{ blog['content'] }}</p>
+            </div>
+            
+            {% if 'tags' in blog and blog['tags'] %}
+            <div class="blog-tags">
+                {% for tag in blog['tags'] %}
+                    <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="blog-navigation">
+                <a href="{{ url_for('blog') }}" class="back-to-blogs">Back to Blogs</a>
+                {% if 'next_post' in blog and blog['next_post'] %}
+                    <a href="{{ url_for('blog_details', blog_id=blog['next_post']) }}" class="next-post">Next Post</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

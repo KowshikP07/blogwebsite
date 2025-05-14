@@ -3,26 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% if blogs and blogs|length > 0 %}
-            Blog - {{ blogs[0]['title'] }}
-        {% else %}
-            Blog - No blogs available
-        {% endif %}
-    </title>
+    <title>Profile</title>
     <link href="{{ url_for('static', filename='css/blog.css') }}" rel="stylesheet">
 </head>
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul class="flash-messages">
-                {% for category, message in messages %}
-                    <li class="flash-{{ category }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-
     <header>
         <div class="header">
             <nav>
@@ -33,7 +17,7 @@
                 <ul class="nav-links">
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="{{ url_for('about') }}">About Us</a></li>
-                    <li><a href="{{ url_for('index') }}#categories">Categories</a></li>
+                    <li><a href="{{ url_for('categories') }}">Categories</a></li>
                     <li><a href="{{ url_for('blog') }}">Blog</a></li>
                     <li><a href="{{ url_for('faq') }}">FAQ</a></li>
                     <li><a href="{{ url_for('contact') }}">Contact</a></li>
@@ -51,7 +35,6 @@
             </nav>
         </div>
     </header>
-
     <section id="blog">
         <div class="show-blog">
             {% if blogs and blogs|length > 0 %}

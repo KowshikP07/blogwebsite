@@ -14,34 +14,28 @@
     <header>
         <div class="header">
             <nav>
-                <div class="logo">
-                    <img src="../static/assets/logo1.png" alt="logo">
-                  </div>
+                <div class="logo"><img src="{{ url_for('static', filename='assets/logo1.png') }}" alt="logo"></div>
                 <span class="line"></span>
                 <ul class="nav-links">
-                    <li><a href="#features">Home</a></li>
-                    <li><a href="#features">About us</a></li>
-                    <li><a href=".categories">Categories</a></li>
-                    <li><a href="#testimonials">Blog</a></li>
-                    <li><a href="#pricing">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About us</a></li>
+                    <li><a href="{{ url_for('categories') }}">Categories</a></li>
+                    <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                    <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
                 <span class="line"></span>
-                <div class="user one"><div class="login"><a href="login.html">Log in</a></div>
-                <div class="signup one"><a href="signup.html">Sign up</a></div></div>
+                <div class="user one">
+                    <div class="login"><a href="{{ url_for('login') }}">Log in</a></div>
+                    <div class="signup one"><a href="{{ url_for('profile') }}">Profile</a></div>
+                </div>
             </nav>
         </div>
     </header>
 	<div class="container">
 		<div class="toolbar">
 			<div class="head">
-				<input type="text" placeholder="Filename" value="untitled" id="filename">
-				<select onchange="fileHandle(this.value); this.selectedIndex=0">
-					<option value="" selected="" hidden="" disabled="">File</option>
-					<option value="new">New file</option>
-					<option value="txt">Save as txt</option>
-					<option value="pdf">Save as pdf</option>
-				</select>
+				<button onclick="window.location.href='{{ url_for('blogform') }}'">Upload</button>
 				<select onchange="formatDoc('formatBlock', this.value); this.selectedIndex=0;">
 					<option value="" selected="" hidden="" disabled="">Format</option>
 					<option value="h1">Heading 1</option>
@@ -115,5 +109,6 @@
 		</section>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="../static/script.js/script.js "></script>
+	
 </body>
 </html>
