@@ -36,4 +36,5 @@ Built using **Flexbox**, ensuring the design adapts beautifully to:
 
 Below is a preview of the homepage:
 
-![BlogSphere UI Preview](static\assets\blogwebsite_ui.png)
+![BlogSphere UI Preview]()
+<img src="static\assets\blogwebsite_ui.png" alt="blog website Screenshot" width="900"/>
